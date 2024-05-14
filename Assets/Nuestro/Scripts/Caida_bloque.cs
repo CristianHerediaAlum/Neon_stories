@@ -10,14 +10,19 @@ public class Caida_bloque : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true;
+        // rb.isKinematic = true;
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player") // Asegúrate de que tu jugador tenga la etiqueta "Player"
+        if (collision.transform.root.gameObject.tag == "Player") // Asegúrate de que tu jugador tenga la etiqueta "Player"
         {
-            rb.isKinematic = false;
+            rb.useGravity = true;
         }
     }
+
+    void OnTriggerEnter(Collider other)
+{
+        rb.useGravity = true;
+}
 }
