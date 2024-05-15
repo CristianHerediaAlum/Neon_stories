@@ -15,10 +15,10 @@ public class Caida_bloque : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.root.gameObject.tag == "Player") // Asegúrate de que tu jugador tenga la etiqueta "Player"
-        {
+        // if (collision.transform.root.gameObject.tag == "Player") // Asegúrate de que tu jugador tenga la etiqueta "Player"
+        // {
             rb.useGravity = true;
-        }
+        // }
     }
 
     void OnTriggerEnter(Collider other)
