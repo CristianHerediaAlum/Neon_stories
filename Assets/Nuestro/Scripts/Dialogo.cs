@@ -2,48 +2,72 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.InputSystem;
 
 public class Dialogo : MonoBehaviour
 {
-    [SerializeField] private GameObject dialogueMark;
-    [SerializeField] private GameObject dialoguePanel;
-    [SerializeField] private Text dialogueText;
-    [SerializeField, TextArea(4,6)] private string[] dialogueLines;
-    // Start is called before the first frame update
+    public TextMeshProUGUI dialogueText;
+    public string[] lines;
+    public float textSpeed = 0.05f;
+    public Button hablarButton; // Referencia al botón "Hablar"
 
-    private float typingTime = 0.05f;
+    int index;
 
-    private bool didDialogueStart;
-    private int lineIndex;
     void Start()
     {
-        
+        dialogueText.text = string.Empty;
+        // Desactivamos el objeto de diálogo al inicio
+        gameObject.SetActive(false);
+
+        // Asociamos la función StartDialogue() al evento onClick del botón "Hablar"
+        hablarButton.onClick.AddListener(StartDialogue);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)){
-            if(!didDialogueStart){
-                StartDialogue();
+        // Verificamos si se presiona la barra espaciadora
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Si el diálogo está activo, procedemos al siguiente diálogo
+            if (gameObject.activeSelf && dialogueText.text == lines[index])
+            {
+                NextLine();
             }
         }
     }
-    private void StartDialogue(){
-        didDialogueStart = true;
-        dialoguePanel.SetActive(true);
-        dialogueMark.SetActive(false);
-        lineIndex = 0;
-        StartCoroutine(ShowLine());
+
+    // Función para comenzar el diálogo
+    public void StartDialogue()
+    {
+        index = 0;
+        gameObject.SetActive(true); // Activamos el objeto de diálogo
+        StartCoroutine(WriteLine());
     }
 
-    private IEnumerator ShowLine(){
-        dialogueText.text = string.Empty;
-
-        foreach (char ch in dialogueLines[lineIndex]){
-            dialogueText.text += ch;
-            yield return new WaitForSeconds(typingTime);
+    // Función para avanzar al siguiente diálogo
+    public void NextLine()
+    {
+        if (index < lines.Length - 1)
+        {
+            index++;
+            dialogueText.text = string.Empty;
+            StartCoroutine(WriteLine());
+        }
+        else
+        {
+            // Si se han mostrado todos los diálogos, desactivamos el objeto
+            gameObject.SetActive(false);
         }
     }
 
+    // Corrutina para escribir el diálogo letra por letra
+    IEnumerator WriteLine()
+    {
+        foreach (char ch in lines[index].ToCharArray())
+        {
+            dialogueText.text += ch;
+            yield return new WaitForSeconds(textSpeed);
+        }
+    }
 }
