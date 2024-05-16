@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // public class Perseguir : MonoBehaviour
 // {
@@ -44,6 +45,15 @@ public class Perseguir : MonoBehaviour
         StartCoroutine(StartChaseAfterDelay(2.0f));
     }
 
+   void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == player)
+        {
+            // Reiniciar el nivel
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+    
     IEnumerator StartChaseAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -54,8 +64,24 @@ public class Perseguir : MonoBehaviour
     {
         if (shouldChase && player != null)
         {
-            Vector3 newPosition = Vector3.MoveTowards(rb.position, player.transform.position, speed * Time.deltaTime);
+            Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+            Vector3 newPosition = transform.position + directionToPlayer * speed * Time.deltaTime;
+
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, directionToPlayer, out hit, speed * Time.deltaTime, LayerMask.GetMask("Default")))
+            {
+                if (hit.collider.gameObject != player)
+                {
+                    // Si se detecta un obstáculo, ajusta la dirección para esquivarlo
+                    Vector3 avoidDirection = Vector3.Reflect(directionToPlayer, hit.normal);
+                    newPosition = transform.position + avoidDirection * speed * Time.deltaTime;
+                }
+            }
+
             rb.MovePosition(newPosition);
+
+            Quaternion rotationToPlayer = Quaternion.LookRotation(directionToPlayer);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotationToPlayer, speed * Time.deltaTime);
         }
     }
 }
