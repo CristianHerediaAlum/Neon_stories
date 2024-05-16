@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ocultar_cursor : MonoBehaviour
+public class Variables_globales : MonoBehaviour
 {
+    public static int n_victorias = 0;
+    public static Vector3 playerposition;
     // Start is called before the first frame update
     void Start()
     {
-        // Debug.Log(Variables_globales.n_victorias);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Cursor.visible = false;
         
     }
 }

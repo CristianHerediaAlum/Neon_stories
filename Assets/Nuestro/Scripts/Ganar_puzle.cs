@@ -20,13 +20,15 @@ public class Ganar_puzle : MonoBehaviour
     {
         // if(other.gameObject.tag == "Player")
         // {
-            Debug.Log("Ganaste");
-            SceneManager.LoadScene("Principal");
-        // }
+        Debug.Log("Ganaste");
+        Variables_globales.n_victorias++;
+        SceneManager.LoadScene("Principal");
+         // }
     }
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Ganaste");
+        Variables_globales.n_victorias++;
         SceneManager.LoadScene("Principal");
     }
 
