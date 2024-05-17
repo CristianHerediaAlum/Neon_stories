@@ -15,9 +15,9 @@ public class Romper_pared : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Variables_globales.n_victorias == 1 && objectName == "Pared_medieval")
+        if(Variables_globales.n_victorias >= 1 && objectName == "Pared_medieval")
             Destroy(gameObject);
-        else if(Variables_globales.n_victorias == 2 && (objectName == "Pared_dino" || objectName == "Pared_dino(1)" ))
+        if(Variables_globales.n_victorias >= 2 && (objectName == "Pared_dino" || objectName == "Pared_dino(1)" ))
             Destroy(gameObject);
     }
 }

@@ -19,7 +19,7 @@ public class Ocultar_cursor : MonoBehaviour
         {
             Cursor.visible = true;
         }
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.C))
         {
             Cursor.visible = false;
         }
