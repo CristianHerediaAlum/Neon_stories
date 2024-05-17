@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("You win!");
             WinText.SetActive(true);
+			Variables_globales.n_victorias++;
             SceneManager.LoadScene("Principal");
         }
     }
