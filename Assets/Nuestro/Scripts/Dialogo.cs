@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;  // Importar el namespace necesario para cargar escenas
 
 public class Dialogo : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Dialogo : MonoBehaviour
     public float textSpeed = 0.05f;
     public Button hablarButton; // Referencia al botón "Hablar"
     public Button jugarButton;  // Referencia al botón "JUGAR"
+    public string sceneToLoad;  // Nombre de la escena a cargar
+    public GameObject jammo;
 
     int index;
 
@@ -24,6 +27,8 @@ public class Dialogo : MonoBehaviour
 
         // Asociamos la función StartDialogue() al evento onClick del botón "Hablar"
         hablarButton.onClick.AddListener(StartDialogue);
+        // Asociamos la función LoadGameScene() al evento onClick del botón "JUGAR"
+        jugarButton.onClick.AddListener(LoadGameScene);
     }
 
     void Update()
@@ -73,5 +78,12 @@ public class Dialogo : MonoBehaviour
             dialogueText.text += ch;
             yield return new WaitForSeconds(textSpeed);
         }
+    }
+
+    // Función para cargar la escena del juego
+    public void LoadGameScene()
+    {
+        Variables_globales.playerposition = jammo.transform.position;
+        SceneManager.LoadScene(sceneToLoad);
     }
 }
