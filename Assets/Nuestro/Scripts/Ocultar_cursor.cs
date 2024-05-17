@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+// using UnityEngine.SceneManagement;
 
 public class Ocultar_cursor : MonoBehaviour
 {
@@ -13,7 +15,18 @@ public class Ocultar_cursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Cursor.visible = false;
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.visible = true;
+        }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Cursor.visible = false;
+        }
+        // if(Input.GetKeyDown(KeyCode.F))
+        // {
+        //     Variables_globales.playerposition = transform.position;
+        //     SceneManager.LoadScene("Puzle_calamar");
+        // }
     }
 }

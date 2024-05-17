@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Variables_globales : MonoBehaviour
+public class Cargar_posicion : MonoBehaviour
 {
-    public static int n_victorias = 0;
-    public static Vector3 playerposition = new Vector3(426, 9, 915);
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = Variables_globales.playerposition;
     }
 
     // Update is called once per frame
