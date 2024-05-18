@@ -49,6 +49,7 @@ public class Dialogo : MonoBehaviour
     {
         index = 0;
         gameObject.SetActive(true); // Activamos el objeto de diálogo
+        hablarButton.gameObject.SetActive(false); // Desactivamos el botón "Hablar" al iniciar el diálogo
         jugarButton.gameObject.SetActive(false); // Desactivamos el botón "JUGAR" al iniciar el diálogo
         StartCoroutine(WriteLine());
     }
