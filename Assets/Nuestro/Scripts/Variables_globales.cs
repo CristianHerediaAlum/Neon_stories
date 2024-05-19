@@ -6,7 +6,7 @@ public class Variables_globales : MonoBehaviour
 {
     public static int n_victorias = 0;
     public static Vector3 playerposition = new Vector3(426, 9, 915);
-    // public static Vector3 playerposition = new Vector3(465, 9, 472);
+    // public static Vector3 playerposition = new Vector3(631, 9, 727);
     // Start is called before the first frame update
     void Start()
     {

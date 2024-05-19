@@ -51,7 +51,33 @@ public class Dialogo : MonoBehaviour
         gameObject.SetActive(true); // Activamos el objeto de diálogo
         hablarButton.gameObject.SetActive(false); // Desactivamos el botón "Hablar" al iniciar el diálogo
         jugarButton.gameObject.SetActive(false); // Desactivamos el botón "JUGAR" al iniciar el diálogo
-        StartCoroutine(WriteLine());
+        if(Variables_globales.n_victorias >= 1 && gameObject.name == "DailoguePanel_c1")
+        {
+            lines = new string[] { "¡Gracias por el problema de las tuberías!" };
+            StartCoroutine(escribir_y_terminar());
+        }
+        else if (Variables_globales.n_victorias >= 2 && gameObject.name == "DailoguePanel_c2")
+        {
+            lines = new string[] { "¿Te ha agotado el chip ese puzle? ¡Jajaja!" };
+            StartCoroutine(escribir_y_terminar());
+        }
+        else if (Variables_globales.n_victorias >= 3 && gameObject.name == "DailoguePanel_c3")
+        {
+            lines = new string[] { "¡Eres bastante escurridizo!" };
+            StartCoroutine(escribir_y_terminar());
+        }
+        else
+            StartCoroutine(WriteLine());
+    }
+
+    IEnumerator escribir_y_terminar()
+    {
+        foreach (char ch in lines[0].ToCharArray())
+        {
+            dialogueText.text += ch;
+            yield return new WaitForSeconds(textSpeed);
+        }
+        gameObject.SetActive(false);
     }
 
     // Función para avanzar al siguiente diálogo

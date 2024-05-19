@@ -16,6 +16,11 @@ public class Terminar_bienvenida : MonoBehaviour
     void Update()
     {
         if(!audioSource.isPlaying)
-            SceneManager.LoadScene("Principal");
+        {
+            if(SceneManager.GetActiveScene().name == "Bienvenida")
+                SceneManager.LoadScene("Principal");
+            else if(SceneManager.GetActiveScene().name == "Final")
+                SceneManager.LoadScene("Creditos");
+        }
     }
 }

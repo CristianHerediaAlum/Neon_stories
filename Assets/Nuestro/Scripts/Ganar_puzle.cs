@@ -22,7 +22,10 @@ public class Ganar_puzle : MonoBehaviour
         // {
         Debug.Log("Ganaste");
         Variables_globales.n_victorias++;
-        SceneManager.LoadScene("Principal");
+        if(SceneManager.GetActiveScene().name == "Puzle_calamar")
+            SceneManager.LoadScene("Final");
+        else
+            SceneManager.LoadScene("Principal");
          // }
     }
     void OnCollisionEnter(Collision collision)
