@@ -20,7 +20,7 @@ public class Terminar_bienvenida : MonoBehaviour
             if(SceneManager.GetActiveScene().name == "Bienvenida")
                 SceneManager.LoadScene("Principal");
             else if(SceneManager.GetActiveScene().name == "Final")
-                SceneManager.LoadScene("Creditos");
+                SceneManager.LoadScene("MenuPrincipal");
         }
     }
 }
