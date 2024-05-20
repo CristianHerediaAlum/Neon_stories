@@ -53,17 +53,17 @@ public class Dialogo : MonoBehaviour
         jugarButton.gameObject.SetActive(false); // Desactivamos el botón "JUGAR" al iniciar el diálogo
         if(Variables_globales.n_victorias >= 1 && gameObject.name == "DailoguePanel_c1")
         {
-            lines = new string[] { "¡Gracias por el problema de las tuberías!" };
+            lines = new string[] { "¡Gracias por el problema de las tuberías!, ahora podrás entrar en el mundo medieval. Mucha suerte!" };
             StartCoroutine(escribir_y_terminar());
         }
         else if (Variables_globales.n_victorias >= 2 && gameObject.name == "DailoguePanel_c2")
         {
-            lines = new string[] { "¿Te ha agotado el chip ese puzle? ¡Jajaja!" };
+            lines = new string[] { "¿Te ha agotado el chip ese puzle? ¡Jajaja!, venga renacuajo, ve hacia el mundo prehistórico y cuidado con el enemigo. Suerte campeón." };
             StartCoroutine(escribir_y_terminar());
         }
         else if (Variables_globales.n_victorias >= 3 && gameObject.name == "DailoguePanel_c3")
         {
-            lines = new string[] { "¡Eres bastante escurridizo!" };
+            lines = new string[] { "¡Eres bastante escurridizo!, ya puedes ir hacia el enemigo final por ese puente, quizas te suene de algo... Suerte" };
             StartCoroutine(escribir_y_terminar());
         }
         else
